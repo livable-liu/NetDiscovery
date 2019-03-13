@@ -15,9 +15,9 @@ public class SortAction extends SeleniumAction{
     public SeleniumAction perform(WebDriver driver) {
 
         try {
-            String saleSortBtn = "//*[@id=\"J_filter\"]/div[1]/div[1]/a[2]";
+            String saleSortBtn = "//*[@id=\"free_convert\"]";
             Utils.clickElement(driver, By.xpath(saleSortBtn));
-            Thread.sleep(3000);
+            Thread.sleep(300000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

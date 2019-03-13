@@ -36,7 +36,10 @@ public enum Browser implements WebDriverInitializer {
                 return new ChromeDriver(options);
             }
 
-            return new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.setHeadless(true);
+            options.addArguments("start-maximized");
+            return new ChromeDriver(options);
         }
     },
     FIREFOX {

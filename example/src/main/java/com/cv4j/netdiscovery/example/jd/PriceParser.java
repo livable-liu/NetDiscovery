@@ -27,7 +27,7 @@ public class PriceParser implements Parser{
 //            page.getResultItems().put("url", url);
             String city = elements.get(0).attr("href").toLowerCase().replace("//www.dianping.com/", "");
             city = city.substring(0, city.indexOf("/"));
-            String url = document.select("div[id=bd_snap_note] a").text();
+            String url = page.getUrl();
             String district = elements.get(elements.size() - 2).text();
             String location = elements.get(elements.size() - 1).text();
             Elements spanElem = document.select("div[class=breadcrumb] span");
@@ -37,11 +37,12 @@ public class PriceParser implements Parser{
             Elements spanElem2 = document.select("span[id=avgPriceTitle]");
             String avg = spanElem2.get(0).text();
             Elements spanElem3 = document.select("span[id=address]");
-            String address = spanElem3.get(0).text();
+            String address = spanElem3 != null && spanElem3.size() > 0 ? spanElem3.get(0).text() : "";
             Elements pElem = document.select("p[class=expand-info tel]");
             String tel = pElem.get(0).text();
             page.getResultItems().put("city", city);
-            page.getResultItems().put("url", url.substring(Math.max(0, url.lastIndexOf("/"))));
+            int index = url.indexOf("com%2Fshop%2F");
+            page.getResultItems().put("url", url.substring(index + "com%2Fshop%2F".length(), url.indexOf("&", index)));
             page.getResultItems().put("district",district);
             page.getResultItems().put("location",location);
             page.getResultItems().put("name",name);
