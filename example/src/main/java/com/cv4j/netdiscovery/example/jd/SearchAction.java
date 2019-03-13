@@ -17,7 +17,7 @@ public class SearchAction extends SeleniumAction {
     public SeleniumAction perform(WebDriver driver) {
 
         try {
-            String searchBtn = "//a[contains(text(), \"百度快照\")]";
+            String searchBtn = "//a[contains(text(), \"快照\")]";
             if (driver.findElement(By.xpath(searchBtn)) != null) {
                 Utils.clickElement(driver, By.xpath(searchBtn));
 
@@ -32,7 +32,7 @@ public class SearchAction extends SeleniumAction {
                     break;
                 }
             }
-//            Thread.sleep(1000);
+            Thread.sleep((int) (2000 + Math.random() * (4000 - 2000 + 1)));
         } catch (Exception e) {
             e.printStackTrace();
         }

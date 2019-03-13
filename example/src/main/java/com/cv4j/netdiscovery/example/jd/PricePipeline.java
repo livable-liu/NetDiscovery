@@ -62,7 +62,7 @@ public class PricePipeline implements Pipeline {
             result.add(resultItems.get("address"));
             result.add(resultItems.get("tel"));
             result.add(resultItems.get("url"));
-            Array2CSV(result, "D:/detail_url/result.csv");
+            Array2CSV(result, "/home/livable/tmp/detail_url/result.csv");
 //            Array2CSV(result, "/root/livable/result.csv");
         }
 //        try {

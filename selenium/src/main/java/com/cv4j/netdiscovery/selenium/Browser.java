@@ -36,7 +36,9 @@ public enum Browser implements WebDriverInitializer {
                 return new ChromeDriver(options);
             }
 
-            return new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+//            options.setHeadless(true);
+            return new ChromeDriver(options);
         }
     },
     FIREFOX {

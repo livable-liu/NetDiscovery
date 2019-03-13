@@ -27,7 +27,7 @@ public class PriceParser implements Parser{
 //            page.getResultItems().put("url", url);
             String city = elements.get(0).attr("href").toLowerCase().replace("//www.dianping.com/", "");
             city = city.substring(0, city.indexOf("/"));
-            String url = document.select("div[id=bd_snap_note] a").text();
+            String url = document.select("p a").text();
             String district = elements.get(elements.size() - 2).text();
             String location = elements.get(elements.size() - 1).text();
             Elements spanElem = document.select("div[class=breadcrumb] span");
