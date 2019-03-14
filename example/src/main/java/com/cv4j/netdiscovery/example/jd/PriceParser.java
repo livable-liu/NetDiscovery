@@ -22,7 +22,8 @@ public class PriceParser implements Parser{
 
 //        Elements elements = document.select("a[class=m]");
         Elements elements = document.select("div[class=breadcrumb] a");
-        if (elements.size() > 0) {
+        Elements baiduSubmit = document.select("input[id=bd_snap_su]");
+        if (elements.size() > 0 && baiduSubmit.size() > 0) {
 //            String url = elements.get(0).attr("href");
 //            page.getResultItems().put("url", url);
             String city = elements.get(0).attr("href").toLowerCase().replace("//www.dianping.com/", "");

@@ -18,7 +18,7 @@ public class JDSpider {
 
     public static void main(String[] args) throws IOException {
 
-        WebDriverPoolConfig config = new WebDriverPoolConfig("example/chromedriver.exe",Browser.CHROME); //设置浏览器的驱动程序和浏览器的类型，浏览器的驱动程序要跟操作系统匹配。
+        WebDriverPoolConfig config = new WebDriverPoolConfig("example/chromedriver",Browser.CHROME); //设置浏览器的驱动程序和浏览器的类型，浏览器的驱动程序要跟操作系统匹配。
         WebDriverPool.init(config); // 需要先使用init，才能使用WebDriverPool
 
         List<SeleniumAction> actions = new ArrayList<>();
@@ -28,7 +28,7 @@ public class JDSpider {
 
         String url = "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=http%3A%2F%2Fwww.dianping.com%2Fshop%2F125170031&rsv_pq=8d186780000170d1&rsv_t=97cfBd6O3TUh0C6%2Fw1%2F9HV%2FYY0x4ZyF5ct5Pde%2FAUosvP6k4XCNWwTtcz5Y&rqlang=cn&rsv_enter=1&rsv_n=2&rsv_sug3=1";
 
-        String path = "D:/detail_url/";
+        String path = "/home/livable/tmp/detail_url/";
         File files = new File(path);
         String[] fileNames = {files.getName()};
         if (files.isDirectory()) {
