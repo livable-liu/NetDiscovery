@@ -29,7 +29,7 @@ public class TestSeleniumAction extends SeleniumAction {
             Thread.sleep(2000);
 
             //对当前网页截屏
-            Utils.taskScreenShot(driver, "D:\\work\\test.png");
+            Utils.taskScreenShot(driver, "D:\\tmp\\test.png");
             
         } catch(InterruptedException e) {
         }
