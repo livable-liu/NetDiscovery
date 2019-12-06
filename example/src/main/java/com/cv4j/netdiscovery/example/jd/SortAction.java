@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /**
- * æŒ‰ç…§é”€é‡è¿›è¡Œæ’åº
+ * °´ÕÕÏúÁ¿½øĞĞÅÅĞò
  * Created by tony on 2018/6/12.
  */
 public class SortAction extends SeleniumAction{
@@ -15,9 +15,9 @@ public class SortAction extends SeleniumAction{
     public SeleniumAction perform(WebDriver driver) {
 
         try {
-            String saleSortBtn = "//*[@id=\"free_convert\"]";
+            String saleSortBtn = "//span[contains(text(),\"±ê×¼Öá¾à\")]";
             Utils.clickElement(driver, By.xpath(saleSortBtn));
-            Thread.sleep(300000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

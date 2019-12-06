@@ -13,11 +13,11 @@ public class TestFile {
     public static void main(String[] args) {
 
         Request request = new Request("http://down-www.7down.net/pcdown/soft/K/kotlinpdf.rar");
-        request.afterRequest(new FileDownloadAfterRequest("test","test.rar")); // 鍦ㄤ娇鐢‵ileDownloader鏃讹紝鍙互浣跨敤AfterRequest鎴栬�匬ipeline瀵规枃浠惰繘琛屼繚瀛樼瓑澶勭悊銆傝繖閲屼娇鐢‵ileDownloadAfterRequest
+        request.afterRequest(new FileDownloadAfterRequest("test","test.rar")); // 在使用FileDownloader时，可以使用AfterRequest或者Pipeline对文件进行保存等处理。这里使用FileDownloadAfterRequest
 
         Spider.create().name("tony")
                 .request(request)
-                .downloader(new FileDownloader()) // 鏂囦欢鐨勪笅杞介渶瑕佷娇鐢‵ileDownloader
+                .downloader(new FileDownloader()) // 文件的下载需要使用FileDownloader
                 .run();
     }
 }

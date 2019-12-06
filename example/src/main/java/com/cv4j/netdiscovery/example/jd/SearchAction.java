@@ -21,23 +21,30 @@ public class SearchAction extends SeleniumAction {
 
         try {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-            String searchBtn = "//a[contains(text(), \"ç™¾åº¦å¿«ç…§\")]";
+            Thread.sleep(3000);
+            String searchBtn = "//nav//a[contains(text(),\" ÅäÖÃ±í \")]";
             Utils.clickElement(driver, By.xpath(searchBtn));
+            Thread.sleep(3000);
 
-            String currentWindow = driver.getWindowHandle();//è·å–å½“å‰çª—å£å¥æŸ„
-            Set<String> handles = driver.getWindowHandles();//è·å–æ‰€æœ‰çª—å£å¥æŸ„
+            String currentWindow = driver.getWindowHandle();//»ñÈ¡µ±Ç°´°¿Ú¾ä±ú
+            Set<String> handles = driver.getWindowHandles();//»ñÈ¡ËùÓĞ´°¿Ú¾ä±ú
             Iterator<String> it = handles.iterator();
+            String next = null;
+            String jumpTo = null;
             while (it.hasNext()) {
-                if (currentWindow == it.next()) {
+                next = it.next();
+                if (currentWindow.equals(next)) {
                     continue;
                 }
-                driver.switchTo().window(it.next());
-                break;
+                else {
+                    jumpTo = next;
+                }
             }
-//            Thread.sleep(1000);
+            driver.switchTo().window(jumpTo);
+            Thread.sleep(3000);
         } catch (Exception e) {
             log.error("url=" + driver.getCurrentUrl());
-//            e.printStackTrace();
+            e.printStackTrace();
         }
 
         return null;

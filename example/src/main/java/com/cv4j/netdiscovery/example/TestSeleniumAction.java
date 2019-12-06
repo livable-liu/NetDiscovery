@@ -10,12 +10,9 @@ public class TestSeleniumAction extends SeleniumAction {
     @Override
     public SeleniumAction perform(WebDriver driver) {
         try {
-            //浏览器窗口最大化
             driver.manage().window().maximize();
-            //停顿2秒
             Thread.sleep(2000);
 
-            //往下滚动500px，滚10次
             for (int i = 0; i < 10; i++) {
                 Utils.scrollBy(driver, 500);
                 Thread.sleep(2000);
@@ -28,7 +25,6 @@ public class TestSeleniumAction extends SeleniumAction {
 
             Thread.sleep(2000);
 
-            //对当前网页截屏
             Utils.taskScreenShot(driver, "D:\\tmp\\test.png");
             
         } catch(InterruptedException e) {

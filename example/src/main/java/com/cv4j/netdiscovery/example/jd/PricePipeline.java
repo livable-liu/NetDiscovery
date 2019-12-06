@@ -25,7 +25,7 @@ public class PricePipeline implements Pipeline {
     public static void Array2CSV(List<List<String>> data, String path)
     {
         try {
-            BufferedWriter out =new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, false),"UTF-8"));
+            BufferedWriter out =new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, true),"UTF-8"));
             for (int i = 0; i < data.size(); i ++) {
                 for (int j = 0; j < data.get(i).size(); j++) {
                     out.write(DelQuota(data.get(i).get(j)));
@@ -59,7 +59,7 @@ public class PricePipeline implements Pipeline {
     public void process(ResultItems resultItems) {
         if (resultItems.get("result") != null) {
             List<List<String>> carList = resultItems.get("result");
-            Array2CSV(carList, "D:/tmp/bmw.csv");
+            Array2CSV(carList, "D:/tmp/bmw_detail.csv");
 //            Array2CSV(result, "/root/livable/result.csv");
         }
 //        try {

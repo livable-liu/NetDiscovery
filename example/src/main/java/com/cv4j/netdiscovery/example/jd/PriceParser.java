@@ -3,6 +3,7 @@ package com.cv4j.netdiscovery.example.jd;
 import com.cv4j.netdiscovery.core.domain.Page;
 import com.cv4j.netdiscovery.core.parser.Parser;
 import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,14 +17,18 @@ import java.util.Map;
 /**
  * Created by tony on 2018/6/12.
  */
+@Slf4j
 public class PriceParser implements Parser{
 
     @Override
     public void process(Page page) {
 
         String pageHtml = page.getHtml().toString();
+        log.error("detail_url=" + page.getUrl());
         Document document = Jsoup.parse(pageHtml);
 
+        //œ¬‘ÿ≥µ–Õ
+        /*
         List<List<String>> result = new ArrayList<>();
         result.add(Lists.newArrayList("id","serial","img","carName","config","energy", "price"));
 
@@ -47,15 +52,53 @@ public class PriceParser implements Parser{
                     for (Element trow : trows) {
                         Map<String, String> car = new HashMap<>();
                         Elements spans = trow.select("span");
-                        String config = spans.get(0).html(); //ÈÖçÁΩÆ
-                        String energy = spans.get(1).html(); //Ê≤πËÄó(Âçá/100ÂÖ¨Èáå)
-                        String price = spans.get(2).html(); //ÂîÆ‰ª∑
+                        String config = spans.get(0).html(); //≈‰÷√
+                        String energy = spans.get(1).html(); //”Õ∫ƒ(…˝/100π´¿Ô)
+                        String price = spans.get(2).html(); // €º€
                         result.add(Lists.newArrayList(id,serial,img,carName,config,energy, price));
                     }
                 }
             }
             page.getResultItems().put("result", result);
         }
-
+        */
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        String model = document.select("div .indicator-label").first().text();
+        //œ¬‘ÿ≥µ¡æ≈‰÷√
+        List<List<String>> result = new ArrayList<>();
+        Elements elements = document.select("div[class=f-s-Content-title] li");
+        if (elements.size() > 0) {
+            List<String> list = new ArrayList<>();
+            list.add("≥µ–Õ");
+            for (int i = 0; i < 9; i ++) {
+                String title = elements.get(i).select("div").first().attr("title");
+                list.add(title);
+//                System.out.println(title);
+            }
+            result.add(list);
+        }
+        int size = elements.size();
+        elements = document.select("div[class=f-s-Content-data] li");
+        Elements classes = document.select("ul .custom-select-options.variant-options li");
+        if (elements.size() > 0) {
+            int count = elements.size() / size;
+            for (int i = 0; i < count; i ++) {
+                List<String> list = new ArrayList<>();
+                list.add(model);
+                list.add(classes.get(i).text());
+                for (int j = 0; j < 9; j++) {
+                    if (elements.size() >= i * 9 + j) {
+                        String title = elements.get(i * 9 + j).select("div .ng-binding").first().text();
+                        list.add(title);
+                    }
+                }
+                result.add(list);
+            }
+        }
+        page.getResultItems().put("result", result);
     }
 }
